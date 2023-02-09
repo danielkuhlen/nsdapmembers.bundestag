@@ -1,9 +1,29 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAME HERE"
+title: "NSDAP members in the German Bundestag"
+author: "Daniel Kuhlen"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
-# Down the rabbit-hole
+# General Information
 
+After World War II and the defeat of Nazi Germany, the Allies were tasked with the rebuilding of the German state. This included a program of denazification aimed at removing former members of the National Socialist German Workers' Party (NSDAP) from positions of power and influence. Denazification was seen as a critical step in preventing the resurgence of Nazi ideology and ensuring accountability for the actions of those who had supported the Nazi regime.
+
+As part of the denazification process, laws were introduced that banned NSDAP members from holding public office and participating in the political process. Despite these efforts, some former NSDAP members were able to re-enter public life in the post-war period, including by becoming members of the German Parliament (Bundestag) after 1949.
+
+In this project, we will focus on analyzing the representation of former NSDAP members in the German Parliament (Bundestag) following the end of Nazi rule in Germany. Our analysis is limited to known NSDAP members and may not fully capture the presence of former members who were able to conceal their past. Additionally, our analysis is limited to the Bundestag and we cannot make any assumptions about the representation of former NSDAP members in other positions of power. It is important to consider the potential limitations of our data when interpreting the results of our analysis. Despite these limitations, our goal is to gain insight into the representation of former NSDAP members in the German Parliament and to contribute to a better understanding of the challenges and complexities of the denazification process.
+
+
+## Structure and Idea 
+
+The aim of this project is to deliver comprehensive and well-organized datasets, as well as data visualization tools, related to the former members of the National Socialist German Workers' Party (NSDAP) in the German Bundestag. The datasets can be accessed in either RDS or CSV formats, and they are free to use. However, proper citation is required if used.
+
+This project emphasizes transparency, which is why the code used to create the datasets is also included in the book. All files are saved in the respective Github repository for replication. 
+
+## Contact Information
+
+If you have any question we are happy to help you out.
+
+**Daniel Kuhlen**: daniel.kuhlen@gmx.de
+
+**Zorbey Özcan**: zorbey099@gmail.de
