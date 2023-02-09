@@ -1,2 +1,359 @@
-# The pool of tears
+# Data
+
+## Data Source
+
+The data used for this project is based on different Wikipedia Articles. In detail following url's:
+
+1) https://de.wikipedia.org/wiki/Liste_ehemaliger_NSDAP-Mitglieder,_die_nach_Mai_1945_politisch_t%C3%A4tig_waren
+
+2) https://de.wikipedia.org/wiki/Liste_der_Mitglieder_des_Deutschen_Bundestages_(1._Wahlperiode)
+
+3) https://de.wikipedia.org/wiki/Liste_der_Mitglieder_des_Deutschen_Bundestages_(2._Wahlperiode)
+
+4) https://de.wikipedia.org/wiki/Liste_der_Mitglieder_des_Deutschen_Bundestages_(3._Wahlperiode)
+
+5) https://de.wikipedia.org/wiki/Liste_der_Mitglieder_des_Deutschen_Bundestages_(4._Wahlperiode)
+
+6) https://de.wikipedia.org/wiki/Liste_der_Mitglieder_des_Deutschen_Bundestages_(5._Wahlperiode)
+
+7) https://de.wikipedia.org/wiki/Liste_der_Mitglieder_des_Deutschen_Bundestages_(6._Wahlperiode)
+
+## Data Scraping and Wrangling
+
+### Bundestag Member
+
+At first the lists for all members of the first six legislative periods of the german bundestag (1949 - 1972) are scraped and transformed in a uniform structure.
+
+```{r, results='hide', error=FALSE, warning=FALSE, message=FALSE}
+# packages ---------------------------------------------------------------------
+library(tidyverse)
+library(rvest)
+
+
+################################## 1.WP ########################################
+
+# 1) web scraping --------------------------------------------------------------
+url = "https://de.wikipedia.org/wiki/Liste_der_Mitglieder_des_Deutschen_Bundestages_(1._Wahlperiode)"
+html = read_html(url)
+html %>%
+html_nodes(css = "table")
+table_node <- html %>%
+html_nodes(css = "table") %>%
+nth(5)
+# Extract the data from the table node
+table_data <- table_node %>% html_table(fill = TRUE)
+# Extract the links for the names in the first column of the table
+table_data$links <- html_attr(table_node %>% html_nodes("td:nth-child(1) a"), "href")
+rm(html, table_node, url)
+
+
+# 2) data wrangling ------------------------------------------------------------
+firstbt <- table_data %>%
+rename(name = `Mitglied des Bundestages`,
+birth_death = `Lebens-daten`,
+party = Partei,
+state = `Bundesland/ Landesliste`,
+constituency = Wahlkreis,
+voteshare = `Stimmen in %`,
+comment = Bemerkungen,
+wikitag = links)
+firstbt <- firstbt %>%
+select(name, wikitag, birth_death, party,
+state, constituency, voteshare, comment) %>%
+mutate(legperiod = 1)
+
+
+################################## 2.WP ########################################
+
+# 1) web scraping --------------------------------------------------------------
+url = "https://de.wikipedia.org/wiki/Liste_der_Mitglieder_des_Deutschen_Bundestages_(2._Wahlperiode)"
+html = read_html(url)
+html %>%
+html_nodes(css = "table")
+table_node <- html %>%
+html_nodes(css = "table") %>%
+nth(3)
+# Extract the data from the table node
+table_data <- table_node %>% html_table(fill = TRUE)
+# Extract the links for the names in the first column of the table
+table_data$links <- html_attr(table_node %>% html_nodes("td:nth-child(1) a"), "href")
+rm(html, table_node, url)
+
+# 2) data wrangling ------------------------------------------------------------
+secondbt <- table_data %>%
+rename(name = `Mitglied des Bundestages`,
+birth_death = `Lebens-daten`,
+party = Partei,
+state = `Bundesland/ Landesliste`,
+constituency = Wahlkreis,
+voteshare = `Erst-stimmen in %`,
+comment = Bemerkungen,
+wikitag = links)
+secondbt <- secondbt %>%
+select(name, wikitag, birth_death, party,
+state, constituency, voteshare, comment) %>%
+mutate(legperiod = 2)
+
+
+################################## 3.WP ########################################
+
+# 1) web scraping --------------------------------------------------------------
+url = "https://de.wikipedia.org/wiki/Liste_der_Mitglieder_des_Deutschen_Bundestages_(3._Wahlperiode)"
+html = read_html(url)
+html %>%
+html_nodes(css = "table")
+table_node <- html %>%
+html_nodes(css = "table") %>%
+nth(4)
+# Extract the data from the table node
+table_data <- table_node %>% html_table(fill = TRUE)
+# Extract the links for the names in the first column of the table
+table_data$links <- html_attr(table_node %>% html_nodes("td:nth-child(1) a"), "href")
+rm(html, table_node, url)
+
+# 2) data wrangling ------------------------------------------------------------
+thirdbt <- table_data %>%
+rename(name = `Mitglied des Bundestages`,
+birth_death = `Lebensdaten`,
+party = Partei,
+state = `Bundesland/ Landesliste`,
+constituency = Wahlkreis,
+voteshare = `Erst-stimmen in %`,
+comment = Bemerkungen,
+wikitag = links)
+thirdbt <- thirdbt %>%
+select(name, wikitag, birth_death, party,
+state, constituency, voteshare, comment) %>%
+mutate(legperiod = 3)
+
+
+################################## 4.WP ########################################
+
+# 1) web scraping --------------------------------------------------------------
+url = "https://de.wikipedia.org/wiki/Liste_der_Mitglieder_des_Deutschen_Bundestages_(4._Wahlperiode)"
+html = read_html(url)
+html %>%
+html_nodes(css = "table")
+table_node <- html %>%
+html_nodes(css = "table") %>%
+nth(2)
+# Extract the data from the table node
+table_data <- table_node %>% html_table(fill = TRUE)
+# Extract the links for the names in the first column of the table
+table_data$links <- html_attr(table_node %>% html_nodes("td:nth-child(1) a"), "href")
+rm(html, table_node, url)
+
+# 2) data wrangling ------------------------------------------------------------
+fourthbt <- table_data %>%
+rename(name = `Mitglied des Bundestages`,
+birth_death = `Lebensdaten`,
+party = Partei,
+state = `Bundesland/ Landesliste`,
+constituency = Wahlkreis,
+voteshare = `Erst-stimmen in %`,
+comment = Bemerkungen,
+wikitag = links)
+fourthbt <- fourthbt %>%
+select(name, wikitag, birth_death, party,
+state, constituency, voteshare, comment) %>%
+mutate(legperiod = 4)
+
+
+################################## 5.WP ########################################
+
+# 1) web scraping --------------------------------------------------------------
+url = "https://de.wikipedia.org/wiki/Liste_der_Mitglieder_des_Deutschen_Bundestages_(5._Wahlperiode)"
+html = read_html(url)
+html %>%
+html_nodes(css = "table")
+table_node <- html %>%
+html_nodes(css = "table") %>%
+nth(2)
+# Extract the data from the table node
+table_data <- table_node %>% html_table(fill = TRUE)
+# Extract the links for the names in the first column of the table
+table_data$links <- html_attr(table_node %>% html_nodes("td:nth-child(1) a"), "href")
+rm(html, table_node, url)
+
+# 2) data wrangling ------------------------------------------------------------
+fifthbt <- table_data %>%
+rename(name = `Mitglied des Bundestages`,
+birth_death = `Lebens-daten`,
+party = Partei,
+state = `Bundesland/ Landesliste`,
+constituency = Wahlkreis,
+voteshare = `Erst-stimmen in %`,
+comment = Bemerkungen,
+wikitag = links)
+fifthbt <- fifthbt %>%
+select(name, wikitag, birth_death, party,
+state, constituency, voteshare, comment) %>%
+mutate(legperiod = 5)
+
+# recode SPD (GDP) and CSU (GDP) as SPD and CSU
+# the four members of the GDP party were guests in the fraction of the SPD or CSU
+# and therefore coded as members of their fraction
+
+fifthbt <- fifthbt %>%
+  mutate(party = recode(party, "SPD (GDP)" = "SPD",
+                        "CSU (GDP)" = "CSU"))
+
+
+################################## 6.WP ########################################
+
+# 1) web scraping --------------------------------------------------------------
+url = "https://de.wikipedia.org/wiki/Liste_der_Mitglieder_des_Deutschen_Bundestages_(6._Wahlperiode)"
+html = read_html(url)
+html %>%
+html_nodes(css = "table")
+table_node <- html %>%
+html_nodes(css = "table") %>%
+nth(2)
+# Extract the data from the table node
+table_data <- table_node %>% html_table(fill = TRUE)
+# Extract the links for the names in the first column of the table
+table_data$links <- html_attr(table_node %>% html_nodes("td:nth-child(1) a"), "href")
+rm(html, table_node, url)
+
+# 2) data wrangling ------------------------------------------------------------
+sixthbt <- table_data %>%
+rename(name = `Mitglied des Bundestages`,
+birth_death = `Lebens-daten`,
+party = Partei,
+state = `Bundesland/ Landesliste`,
+constituency = Wahlkreis,
+voteshare = `Erst-stimmen in %`,
+comment = Bemerkungen,
+wikitag = links)
+sixthbt <- sixthbt %>%
+select(name, wikitag, birth_death, party,
+state, constituency, voteshare, comment) %>%
+mutate(legperiod = 6)
+```
+
+Then a dataframe **btmember** is constructed that binds the dataset 1-6 together. 
+
+```{r, results='hide', error=FALSE, warning=FALSE, message=FALSE}
+######################### member complete ######################################
+df_list <- list(firstbt, secondbt, thirdbt, fourthbt, fifthbt, sixthbt)
+btmember <- do.call(rbind, df_list)
+
+rm(df_list, table_data)
+
+saveRDS(btmember, file = "btmember.RDS")
+```
+
+### Former NSDAP members
+
+Secondly, the list of all (known) NSDAP members that were politically active in the Western zones of occupation and the Federal Republic of Germany is scraped.
+
+```{r, results='hide', error=FALSE, warning=FALSE, message=FALSE}
+# Packages ---------------------------------------------------------------------
+
+library(tidyverse)
+library(rvest)
+library(stringr)
+library(writexl)
+
+# 1) Web-Scraping --------------------------------------------------------------
+
+# liste brd 
+url <- "https://de.wikipedia.org/wiki/Liste_ehemaliger_NSDAP-Mitglieder,_die_nach_Mai_1945_politisch_t%C3%A4tig_waren"
+
+# Read the HTML content of the URL
+html_content <- read_html(url)
+
+# Extract the table
+table_html <- html_content %>%
+  html_nodes("table") %>%
+  .[[1]]
+
+# Convert the table to a data frame
+nazis.brd <- table_html %>%
+  html_table(header = TRUE)
+
+rm(html_content, table_html, url)
+
+# liste brd wikitags
+url <- "https://de.wikipedia.org/wiki/Liste_ehemaliger_NSDAP-Mitglieder,_die_nach_Mai_1945_politisch_t%C3%A4tig_waren"
+
+page <- read_html(url)
+
+names_col <- html_nodes(page, ".wikitable td:nth-child(1) a") %>% html_text()
+names_col <- gsub("\n", "", names_col)
+
+links_col <- html_nodes(page, ".wikitable td:nth-child(1) a") %>% html_attr("href")
+
+wikitags.brd <- data.frame(name = names_col, links = links_col, stringsAsFactors = FALSE) %>% 
+  distinct()
+
+rm(page, links_col, names_col, url)
+
+# 2) Data-Cleaning -------------------------------------------------------------
+
+# left join wikitags
+nazis.brd <- nazis.brd %>%
+  separate(Name, c("name", "birth_death"), "\\(") %>% 
+  distinct() %>% 
+  left_join(wikitags.brd, by = "name")
+
+# name, birthdate, deathdate clean
+nazis.brd <- nazis.brd %>%
+  mutate(name = str_split(name, ",") %>% map_chr(~ paste(rev(.x), collapse = " ")),
+         name = str_trim(name),
+         birth_death = gsub("[()]", "", birth_death),
+         birth_death = str_replace(birth_death, "-", ""),
+         birthdate = str_sub(birth_death, 1, 4),
+         deathdate = str_sub(birth_death, 6, 9))
+
+nazis.brd["birth_death"] <- NULL
+
+# partymembership clean
+nazis.brd <- nazis.brd %>%
+  mutate(partybrd = gsub("[0-9]+", "", `Parteimitglied­schaften ab 1945`),
+         partybrd = gsub("ab", "", partybrd),
+         partybrd = gsub("bis", "", partybrd),
+         partybrd = trimws(partybrd),
+         partybrd = str_squish(partybrd))
+
+# emptyvalues with na
+nazis.brd <- nazis.brd %>% mutate_all(~ifelse(as.character(.) == "", NA, .))
+
+# rename columns
+nazis.brd <- nazis.brd %>%
+  rename("nsdap.membership" = "NSDAP",
+         "position" = "Amt/Ämter",
+         "wikitag" = "links")
+
+# columns correct order, delete unnecessary 
+nazis.brd <- nazis.brd %>% 
+  select(name, wikitag, birthdate, deathdate, nsdap.membership, partybrd)
+
+# save rds
+saveRDS(nazis.brd, file = "nazisparl.RDS")
+```
+
+### Final Dataset
+
+Lastly the final dataset **btmembernazi** is constructed. To do so only the variables of interested of the previous two dataframes are selected and then the datasets are merged by the wikitag variable.
+
+```{r, results='hide', error=FALSE, warning=FALSE, message=FALSE}
+# datawrangling ----------------------------------------------------------------
+nazis.merge <- nazis.brd %>% 
+  select(wikitag, nsdap.membership)
+
+btmember.merge <- btmember %>%
+  select(name, wikitag, party, voteshare, legperiod)
+
+btmembernazi <- left_join(btmember.merge, nazis.merge, by = "wikitag") %>%
+  mutate(nsdap.membership = ifelse(is.na(nsdap.membership), 0, 1),
+         party = ifelse(party == "unabhängig", "independent", party),
+         voteshare = ifelse(voteshare == "", NA, voteshare))
+
+# save rds
+saveRDS(btmembernazi, file = "btmembernazi.RDS")
+
+# save csv
+write.csv(btmembernazi, file = "btmembernazi.csv")
+```
 
