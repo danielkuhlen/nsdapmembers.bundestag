@@ -8,7 +8,7 @@ The data on the representation of former NSDAP members in the German Bundestag i
 
 ## Downloading the Data in R
 
-To download the dataset in R, you can use the `read.csv` function from the base R library. The `read.csv` function reads a csv file from a URL and returns a data frame.
+To download the dataset in R, you can use the `read.csv` function from the base R library.
 
 Here is an example of how to use the `read.csv` function to download the data:
 
@@ -30,8 +30,7 @@ nsdap_data = pd.read_csv("https://github.com/danielkuhlen/nsdapmembers.bundestag
 
 ## Downloading the Data in Stata
 
-In Stata, you can use the `import delimited` command to download and read the csv file. The `import delimited` command reads a file with a specified delimiter (in this case, a comma) and creates a Stata dataset.
-
+In Stata, you can use the `import delimited` command to download and read the csv file. 
 Here is an example of how to use the `import delimited` command to download the data in Stata:
 
 ```stata

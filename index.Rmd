@@ -25,5 +25,3 @@ This project emphasizes transparency, which is why the code used to create the d
 If you have any question we are happy to help you out.
 
 **Daniel Kuhlen**: daniel.kuhlen@gmx.de
-
-**Zorbey Özcan**: zorbey099@gmail.de
