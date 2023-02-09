@@ -12,7 +12,7 @@ To download the dataset in R, you can use the `read.csv` function from the base 
 
 Here is an example of how to use the `read.csv` function to download the data:
 
-```{r}
+```
 nsdap_data <- read.csv("https://github.com/danielkuhlen/nsdapmembers.bundestag/blob/master/btmembernazi.csv")
 ```
 
@@ -22,9 +22,21 @@ In Python, you can use the `pandas` library to download and read the csv file. T
 
 Here is an example of how to use the `read_csv` function to download the data in Python:
 
+```
 import pandas as pd
 
 nsdap_data = pd.read_csv("https://github.com/danielkuhlen/nsdapmembers.bundestag/blob/master/btmembernazi.csv")
+```
+
+## Downloading the Data in Stata
+
+In Stata, you can use the `import delimited` command to download and read the csv file. The `import delimited` command reads a file with a specified delimiter (in this case, a comma) and creates a Stata dataset.
+
+Here is an example of how to use the `import delimited` command to download the data in Stata:
+
+```stata
+import delimited "https://github.com/danielkuhlen/nsdapmembers.bundestag/blob/master/btmembernazi.csv", clear
+```
 
 # Citation
 
