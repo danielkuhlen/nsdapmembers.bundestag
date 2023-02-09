@@ -1,5 +1,15 @@
 general-information
 structure-and-idea
 contact-information
-the-pool-of-tears
-a-caucus-race-and-a-long-tale
+data
+data-source
+data-scraping-and-wrangling
+bundestag-member
+former-nsdap-members
+final-dataset
+data-visualization
+data-wrangling
+former-nsdap-by-legislative-period
+former-nsdap-by-party
+former-nsdap-by-party-and-legislative-periods
+outlook
