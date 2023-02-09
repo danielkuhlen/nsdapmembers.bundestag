@@ -2,6 +2,15 @@
 
 This project provides data and visualization on the representation of former members of the National Socialist German Workers' Party (NSDAP) in the German Bundestag (Federal Parliament) during the Federal Republic of Germany.
 
+# Publication
+
+This project, coding documentation and all of its plots are published in a bookdown format, available at the following URL:
+
+https://danielkuhlen.github.io/nsdapmembers.bundestag/
+
+The bookdown format allows for a more comprehensive and interactive presentation of the data and results, making it easier to understand and explore the findings. 
+
+
 # Data
 
 The data on the representation of former NSDAP members in the German Bundestag is available in csv format at the following URL: https://github.com/danielkuhlen/nsdapmembers.bundestag/blob/master/btmembernazi.csv
