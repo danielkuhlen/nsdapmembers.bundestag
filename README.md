@@ -22,7 +22,7 @@ To download the dataset in R, you can use the `read.csv` function from the base 
 Here is an example of how to use the `read.csv` function to download the data:
 
 ```
-nsdap_data <- read.csv("https://github.com/danielkuhlen/nsdapmembers.bundestag/blob/master/btmembernazi.csv")
+nsdap_data <- read.csv("https://raw.githubusercontent.com/danielkuhlen/nsdapmembers.bundestag/master/btmembernazi.csv")
 ```
 
 ## Downloading the Data in Python
@@ -34,7 +34,7 @@ Here is an example of how to use the `read_csv` function to download the data in
 ```
 import pandas as pd
 
-nsdap_data = pd.read_csv("https://github.com/danielkuhlen/nsdapmembers.bundestag/blob/master/btmembernazi.csv")
+nsdap_data = pd.read_csv("https://raw.githubusercontent.com/danielkuhlen/nsdapmembers.bundestag/master/btmembernazi.csv")
 ```
 
 ## Downloading the Data in Stata
@@ -43,7 +43,7 @@ In Stata, you can use the `import delimited` command to download and read the cs
 Here is an example of how to use the `import delimited` command to download the data in Stata:
 
 ```stata
-import delimited "https://github.com/danielkuhlen/nsdapmembers.bundestag/blob/master/btmembernazi.csv", clear
+import delimited "https://raw.githubusercontent.com/danielkuhlen/nsdapmembers.bundestag/master/btmembernazi.csv", clear
 ```
 
 # Citation
