@@ -112,12 +112,12 @@ btmembernazi %>%
   theme(text=element_text(family="Times New Roman"))
 ```
 
-The plot reveals that there was a steady increase in the percentage of former NSDAP members in all still relevant parties (SPD, CDU, CSU, FDP) 1960. Unlike our fist intuition that most former NSDAP members were part of the first Bundestag former members seemed to had an easier access into these parties the further their crimes were in the future. How this is affected by specific policies e.g. that many crimes were barred by the statute of limitations as of 1959 (*Verjährung*) or the decreasing influence of the allies could be subject to further research.
+The plot shows a gradual rise in the percentage of former members of the NSDAP in all major political parties (SPD, CDU, CSU, FDP) by 1960. This is contrary to the initial expectation that most ex-NSDAP members would have joined the first Bundestag. However, it appears that those with a history of NSDAP affiliation had greater ease in joining these parties as their crimes receded further into the past. Further research is needed to examine how this trend was influenced by specific policies, such as the statute of limitations for crimes which had expired by 1959 (*Verjährung*), or the decline in influence of the Allies.
 
 ## Outlook
 
 This project aims to provide a preliminary understanding of the presence of former NSDAP members in the German Bundestag over time. While the goal is to present the data in a clean and usable format, and to provide some basic visualizations, it is not meant to be a comprehensive analysis. Instead, the main objective is to make the data freely available for further research and investigation. The project serves as a starting point for further examination of this important and complex issue.
 
-We would be happy to see if somebody could use this data in a meaningful way. 
+I would be happy to see if somebody could use this data in a meaningful way.
 
 
