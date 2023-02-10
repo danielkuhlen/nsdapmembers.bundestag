@@ -23,7 +23,7 @@
 <meta name="author" content="Daniel Kuhlen" />
 
 
-<meta name="date" content="2023-02-09" />
+<meta name="date" content="2023-02-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -197,7 +197,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.2</span> Data Scraping and Wrangling<a href="data.html#data-scraping-and-wrangling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="bundestag-member" class="section level3 hasAnchor" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Bundestag Member<a href="data.html#bundestag-member" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>At first the lists for all members of the first six legislative periods of the german bundestag (1949 - 1972) are scraped and transformed in a uniform structure.</p>
+<p>This code is a script for web scraping and data wrangling in R. It collects data on members of the German Bundestag from different election periods and cleans the data into a tidy format. The code uses the “tidyverse” and “rvest” packages to perform the web scraping and data manipulation.</p>
+<p>The script starts by scraping data from Wikipedia for the first election period, the first Bundestag (1.WP). It starts by setting the URL for the relevant Wikipedia page and reading the HTML content of the page. Then, it selects the desired table from the HTML content and extracts the relevant information from the table, including the links for the names of the members in the first column. The extracted data is then cleaned and transformed into a tidy format, with columns for the member’s name, birth/death information, party affiliation, state, constituency, vote share, comments, and the election period.</p>
+<p>The script repeats this process for the second, third, and fourth, fifth and sixth election periods, with each iteration scraping data from a different Wikipedia page and cleaning the data into a tidy format with the same columns.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># packages ---------------------------------------------------------------------</span></span>
 <span id="cb1-2"><a href="data.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-3"><a href="data.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
@@ -402,7 +404,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-202"><a href="data.html#cb1-202" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(name, wikitag, birth_death, party,</span>
 <span id="cb1-203"><a href="data.html#cb1-203" aria-hidden="true" tabindex="-1"></a>state, constituency, voteshare, comment) <span class="sc">%&gt;%</span></span>
 <span id="cb1-204"><a href="data.html#cb1-204" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">legperiod =</span> <span class="dv">6</span>)</span></code></pre></div>
-<p>Then a dataframe <strong>btmember</strong> is constructed that binds the dataset 1-6 together.</p>
+<p>In the end, all the tidied data is combined into a single data frame, making it easy to analyze and work with the collected information on the members of the German Bundestag across multiple election periods.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">######################### member complete ######################################</span></span>
 <span id="cb2-2"><a href="data.html#cb2-2" aria-hidden="true" tabindex="-1"></a>df_list <span class="ot">&lt;-</span> <span class="fu">list</span>(firstbt, secondbt, thirdbt, fourthbt, fifthbt, sixthbt)</span>
 <span id="cb2-3"><a href="data.html#cb2-3" aria-hidden="true" tabindex="-1"></a>btmember <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, df_list)</span>
@@ -413,7 +415,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="former-nsdap-members" class="section level3 hasAnchor" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Former NSDAP members<a href="data.html#former-nsdap-members" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Secondly, the list of all (known) NSDAP members that were politically active in the Western zones of occupation and the Federal Republic of Germany is scraped.</p>
+<p>This code is a web scraper that gathers information about former members of the National Socialist German Workers’ Party (NSDAP) who were politically active after May 1945.</p>
+<p>The first part of the code uses the rvest library to scrape a table from a Wikipedia page and convert it into a data frame. The second part of the code performs data cleaning and manipulation tasks such as splitting columns, removing unnecessary characters, and replacing empty values with NA. Finally, the columns are renamed and the data is saved as an RDS file for future use.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages ---------------------------------------------------------------------</span></span>
 <span id="cb3-2"><a href="data.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="data.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -500,7 +503,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="final-dataset" class="section level3 hasAnchor" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> Final Dataset<a href="data.html#final-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Lastly the final dataset <strong>btmembernazi</strong> is constructed. To do so only the variables of interested of the previous two dataframes are selected and then the datasets are merged by the wikitag variable.</p>
+<p>This code performs data wrangling on two datasets nazis.brd and btmember. It selects relevant columns from both datasets and performs a left join operation to combine them into a single dataset <strong>btmembernazi</strong>. The newly created dataset has columns from both original datasets and contains information on the party, voteshare, and NSDAP membership for all parliamentarians in the first 6 electoral periods. The final result is saved in two formats, RDS and CSV, for future use.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># datawrangling ----------------------------------------------------------------</span></span>
 <span id="cb4-2"><a href="data.html#cb4-2" aria-hidden="true" tabindex="-1"></a>nazis.merge <span class="ot">&lt;-</span> nazis.brd <span class="sc">%&gt;%</span> </span>
 <span id="cb4-3"><a href="data.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wikitag, nsdap.membership)</span>

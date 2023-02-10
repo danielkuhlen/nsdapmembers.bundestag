@@ -22,7 +22,11 @@ The data used for this project is based on different Wikipedia Articles. In deta
 
 ### Bundestag Member
 
-At first the lists for all members of the first six legislative periods of the german bundestag (1949 - 1972) are scraped and transformed in a uniform structure.
+This code is a script for web scraping and data wrangling in R. It collects data on members of the German Bundestag from different election periods and cleans the data into a tidy format. The code uses the "tidyverse" and "rvest" packages to perform the web scraping and data manipulation.
+
+The script starts by scraping data from Wikipedia for the first election period, the first Bundestag (1.WP). It starts by setting the URL for the relevant Wikipedia page and reading the HTML content of the page. Then, it selects the desired table from the HTML content and extracts the relevant information from the table, including the links for the names of the members in the first column. The extracted data is then cleaned and transformed into a tidy format, with columns for the member's name, birth/death information, party affiliation, state, constituency, vote share, comments, and the election period.
+
+The script repeats this process for the second, third, and fourth, fifth and sixth election periods, with each iteration scraping data from a different Wikipedia page and cleaning the data into a tidy format with the same columns.
 
 ```{r, results='hide', error=FALSE, warning=FALSE, message=FALSE}
 # packages ---------------------------------------------------------------------
@@ -231,7 +235,7 @@ state, constituency, voteshare, comment) %>%
 mutate(legperiod = 6)
 ```
 
-Then a dataframe **btmember** is constructed that binds the dataset 1-6 together. 
+In the end, all the tidied data is combined into a single data frame, making it easy to analyze and work with the collected information on the members of the German Bundestag across multiple election periods.
 
 ```{r, results='hide', error=FALSE, warning=FALSE, message=FALSE}
 ######################### member complete ######################################
@@ -245,7 +249,9 @@ saveRDS(btmember, file = "btmember.RDS")
 
 ### Former NSDAP members
 
-Secondly, the list of all (known) NSDAP members that were politically active in the Western zones of occupation and the Federal Republic of Germany is scraped.
+This code is a web scraper that gathers information about former members of the National Socialist German Workers' Party (NSDAP) who were politically active after May 1945.
+
+The first part of the code uses the rvest library to scrape a table from a Wikipedia page and convert it into a data frame. The second part of the code performs data cleaning and manipulation tasks such as splitting columns, removing unnecessary characters, and replacing empty values with NA. Finally, the columns are renamed and the data is saved as an RDS file for future use.
 
 ```{r, results='hide', error=FALSE, warning=FALSE, message=FALSE}
 # Packages ---------------------------------------------------------------------
@@ -335,7 +341,7 @@ saveRDS(nazis.brd, file = "nazisparl.RDS")
 
 ### Final Dataset
 
-Lastly the final dataset **btmembernazi** is constructed. To do so only the variables of interested of the previous two dataframes are selected and then the datasets are merged by the wikitag variable.
+This code performs data wrangling on two datasets nazis.brd and btmember. It selects relevant columns from both datasets and performs a left join operation to combine them into a single dataset **btmembernazi**. The newly created dataset has columns from both original datasets and contains information on the party, voteshare, and NSDAP membership for all parliamentarians in the first 6 electoral periods. The final result is saved in two formats, RDS and CSV, for future use.
 
 ```{r, results='hide', error=FALSE, warning=FALSE, message=FALSE}
 # datawrangling ----------------------------------------------------------------
